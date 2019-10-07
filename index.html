@@ -51,82 +51,16 @@
 		<div class="description">
 			<h12></h12>
 		</div>
-		<script> function sentenceLoad() {
+		<script>
+			const loadWords = async (filename) => (await (await fetch(filename)).text()).split(/\n/);
+			const randChoice = (arr) => arr[Math.floor( Math.random() * arr.length )];
 			//declare arrays
-      const buzzwordAdjectives = [
-        'Adaptive',
-	'Big',
-        'Computational',
-        'Crowdsourced',
-	'Decentralised',
-        'Deep',
-	'Design',
-	'Distributed',
-        'Entrepreneurial',
-        'Generative',
-        'Gamified',
-        'Innovative',
-	'Precision',
-        'Quantum',
-        'Security for',
-        'Interconnected',
-      ]
-			const buzzwords = [
-        '5G Networks',
-	'Architecture',
-        'Artificial Intelligence',
-	'Augemented Analytics',
-	'Autonomous Devices',
-	'Aviation Technology',
-        'Big Data',
-        'Bio-Augmentation',
-        'Blockchain',
-        'Computer Vision',
-        'Cloud Computing',
-        'Cryogenics',
-	'Cyber-physical Security',
-        'Data Science',
-	'DevSecAIOps',
-	'Design',
-	'Digital Ethics',
-	'Digital Transformation',
-	'Digital Twins',
-	'Edge Computing',
-        'Engineering Product Development',
-        'Engineering Systems',
-        'Genetic Modification',
-        'Real News',
-	'Immersive Experiences',
-        'Information Systems',
-        'IoT',
-	'Intelligent Interfaces',
-        'Quantum Computing',
-        'Security',
-	'Smart Cities',
-        'Smart Dustbins',
-	'Smart Spaces',
-	'Virtual Reality'
-      ]; 
-			const clauses = [
-        'and',
-	'Entrepreneurship, and',
-	'Design, and',
-	'for',
-	'Research, and'
-      ];
-			const endings = [
-        'Collaboration',
-        'Design Innovation',
-        'Design',
-        'Fake News',
-        'Management',
-        'Sustainability',
-        'The Fourth Wave of Industrialization',
-        'The Future',
-      ];    
+			let choices = [[], [], [], []];
+			const files = ['adjectives.txt', 'buzzwords.txt', 'clauses.txt', 'endings.txt'];
+			Promise.all(files.map(loadWords)).then((r) => { choices = r })
+			function sentenceLoad() {
 			//shuffle through contents of each array, picking one entry per array
-      			const randChoice = (arr) => arr[Math.floor( Math.random() * arr.length )];
-			const words = [buzzwordAdjectives, buzzwords, clauses, endings].map(randChoice);
+			const words = choices.map(randChoice);
 			//place the random entry into the appropriate place in the HTML
 			jQuery("h5").html(words.join(' '));
 			//generates the degree description
