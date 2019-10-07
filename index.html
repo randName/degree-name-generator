@@ -3,7 +3,7 @@
 		<title>Degree Name Generator</title>
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-				<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" type="text/css" href="main.css">
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142866432-1"></script>
 		<script>
@@ -12,23 +12,23 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-142866432-1');
 		</script>
-		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>		
+		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 	</head>
 	<body>
- 		<div class="title">
- 	 		<h3><center>DEGREE NAME GENERATOR</center></h3>
- 		</div>
-    <img class='logo' src='https://pngimage.net/wp-content/uploads/2018/06/sutd-logo-png-.png' />
- 		<div class="text">
-	 		<p>Our accreditation office needs your help!</p>
+		<div class="title">
+			<h3><center>DEGREE NAME GENERATOR</center></h3>
+		</div>
+		<img class='logo' src='https://pngimage.net/wp-content/uploads/2018/06/sutd-logo-png-.png' />
+		<div class="text">
+			<p>Our accreditation office needs your help!</p>
 			<p>The last survey was too successful! Now we need to come up with new Degree names!</p>
 			<p>Now we even have descriptions of our up and coming degrees!</p>
 			<p>Also, if you want to add more EMAIL SIGNATURES to your life, check out the <a href="https://fishbiscuit.github.io/email-signature-generator" target="_blank">email signature generator</a></p>
- 		</div>
+		</div>
 		<br>
 		<div class="button">
 			<button onclick="sentenceLoad()">INNOVATE NOW</button>
-		</div> 
+		</div>
 		<div class="container">
 			<h5></h5>
 		</div>
@@ -54,16 +54,16 @@
 		<script>
 			const loadWords = async (filename) => (await (await fetch(filename)).text()).split(/\n/);
 			const randChoice = (arr) => arr[Math.floor( Math.random() * arr.length )];
-			//declare arrays
+			// declare arrays
 			let choices = [[], [], [], []];
 			const files = ['adjectives.txt', 'buzzwords.txt', 'clauses.txt', 'endings.txt'];
-			Promise.all(files.map(loadWords)).then((r) => { choices = r })
+			Promise.all(files.map(loadWords)).then((r) => { choices = r });
 			function sentenceLoad() {
-			//shuffle through contents of each array, picking one entry per array
+			// shuffle through contents of each array, picking one entry per array
 			const words = choices.map(randChoice);
-			//place the random entry into the appropriate place in the HTML
+			// place the random entry into the appropriate place in the HTML
 			jQuery("h5").html(words.join(' '));
-			//generates the degree description
+			// generates the degree description
 			jQuery("h7").html('This programme aims to create a new breed of '+ words[1] + ' designers and ' + words[3] + ' innovators who are able to harness the power of ' + words[1] + ' to enable ' + words[3] + ' in the space of products, systems, services and built environment.');
 			jQuery("h8").html('It would train graduates with core ' + words[1] + ' skills and ' + words[3] + ' which encompasses the ability to:');
 			jQuery("h9").html('i. apply '+ words[1] +' to '+ words[3] +' in the space of products, services, systems and built environment;');
@@ -71,6 +71,6 @@
 			jQuery("h11").html('iii. improve '+ words[0] + ' experiences using digital technologies; and');
 			jQuery("h12" ).html('iv. critically assess the ethical, enviromental, organisational and societal effects of their ' + words[1] + ' AI-enabled solutions or innovations during the design process.')
 			}
- 		</script>
+		</script>
 	</body>
 </html>
